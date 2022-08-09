@@ -19,12 +19,18 @@ namespace Booking.Controllers
         {
             _context = context;
         }
-
         // GET: api/TicketAvilables
+
         [HttpGet]
         public async Task<ActionResult<IEnumerable<TicketAvilable>>> GetTicketAvilables()
         {
             return await _context.TicketAvilables.ToListAsync();
+        }
+
+        [HttpGet("SearchTicket")]
+        public async Task<ActionResult<IEnumerable<TicketAvilable>>> SearchTicket(string from,string to)
+        {
+            return await _context.TicketAvilables.Where(x=>x.from==from&&x.to==to).ToListAsync();
         }
     
         // GET: api/TicketAvilables/5
