@@ -41,16 +41,11 @@ namespace Booking.Controllers
             return ticketAvilable;
         }
 
-        //[HttpGet("{from}/{to}")]
-        //public async Task<ActionResult<TicketAvilable>> GetTicketAvilable(string from ,string to)
-        //{
-        //    var ticketAvilable = await _context.TicketAvilables.FindAsync(from, to);
-        //    if (ticketAvilable == null)
-        //    {
-        //        return NotFound();
-        //    }
-        //    return ticketAvilable;
-        //}
+        [HttpGet("GetTrip")]
+        public async Task<ActionResult<IEnumerable<TicketAvilable>>> GetTrip(string from,string to)
+        {
+            return await _context.TicketAvilables.Where(x=>x.from==from&&x.to==to).ToListAsync();
+        }
     
 
     // PUT: api/TicketAvilables/5
